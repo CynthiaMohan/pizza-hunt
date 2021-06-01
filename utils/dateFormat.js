@@ -23,7 +23,6 @@ module.exports = (
   { monthLength = 'short', dateSuffix = true } = {}
 ) => {
   let months;
-
   if (monthLength === 'short') {
     months = {
       0: 'Jan',

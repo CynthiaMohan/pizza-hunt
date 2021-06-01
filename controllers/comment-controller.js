@@ -1,16 +1,7 @@
 const { Comment, Pizza } = require('../models');
 
-
 const commentController = {
-    //add comment to a pizza
-    // async addComment({ params, body }, res) {
-    //     console.log(body);
-    //     const newComment = await Comment.create(body);
-    //     const { _id } = params;
-    //     console.log(_id);
-    // },
-
-
+    // add comment to pizza
     addComment({ params, body }, res) {
         console.log(body);
         Comment.create(body)
@@ -23,14 +14,15 @@ const commentController = {
             })
             .then(dbPizzaData => {
                 if (!dbPizzaData) {
-                    res.status(404).json({ message: 'The Pizza was not found' });
+                    res.status(404).json({ message: 'No pizza found with this id!' });
                     return;
                 }
                 res.json(dbPizzaData);
             })
             .catch(err => res.json(err));
     },
-    //remove comment
+
+    // remove comment
     removeComment({ params }, res) {
         Comment.findOneAndDelete({ _id: params.commentId })
             .then(deletedComment => {
